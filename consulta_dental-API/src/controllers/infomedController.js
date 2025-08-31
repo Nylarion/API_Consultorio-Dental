@@ -1,4 +1,4 @@
-const {InfoMedica} = require('../models/InfoMedica');
+const InfoMedica = require('../models/InfoMedica');
 
 const infomedController = {
 
@@ -22,7 +22,7 @@ const infomedController = {
 
             console.log(`Se encontraron ${InfoMed.length} Informaciones medicas`);
 
-            res.status(200),json({
+            res.status(200).json({
 
 
                 mensaje: 'Informacion obtenida exitosamente',
@@ -58,7 +58,7 @@ const infomedController = {
 
             console.log(`Buscando Información Medica por ID: ${id_InfoMedica}`);
 
-            const InfoMed = await InfoMedica.findByPK(id_InfoMedica);
+            const InfoMed = await InfoMedica.findByPk(id_InfoMedica); //cambiar
             
             if (!InfoMed){
 
@@ -175,7 +175,7 @@ const infomedController = {
 
             console.log(`Actualizando info med ID ${id_InfoMedica}`);
 
-            const InfoMed = await InfoMedica.findByPK(id_InfoMedica);
+            const InfoMed = await InfoMedica.findByPk(id_InfoMedica); //cambiar
 
             if (!InfoMed){
 
@@ -246,7 +246,7 @@ const infomedController = {
             const {id_InfoMedica} = req.params;
             console.log(`Eliminando infomed ID: ${id_InfoMedica}`);
 
-            const InfoMed = await InfoMedica.findByPK(id_InfoMedica);
+            const InfoMed = await InfoMedica.findByPk(id_InfoMedica); //cambiar
 
             if (!InfoMed){
 

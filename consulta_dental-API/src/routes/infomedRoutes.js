@@ -4,9 +4,9 @@ const infomedController = require('../controllers/infomedController');
 
 
 router.get('/', infomedController.obtenerTodos);
-router.get('/:id', infomedController.obtenerPorId);
+router.get('/:id_InfoMedica', infomedController.obtenerPorId);
 router.post('/', infomedController.crear);
-router.put('/:id', infomedController.actualizar);
-router.delete('/:id', infomedController.eliminar);
+router.put('/:id_InfoMedica', infomedController.actualizar);
+router.delete('/:id_InfoMedica', infomedController.eliminar);
 
 module.exports = router;
