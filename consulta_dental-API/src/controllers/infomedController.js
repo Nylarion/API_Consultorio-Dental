@@ -102,16 +102,167 @@ const infomedController = {
 
         try {
 
-            const { diagnostico, tratamiento}
+            const {diagnostico, tratamiento} = req.body;
+
+            console.log('Creando nueva información medica: ', {diagnostico, tratamiento});
+
+
+            const nuevaInfoMed = await InfoMedica.create({
+
+                diagnostico,
+                tratamiento
+
+            });
+
+            console.log(`Informacion medica creada con ID: ${nuevaInfoMed.id_InfoMedica}`);
+
+            res.status(201).json({
+
+                mensaje: 'Info medica creada exitosamente',
+                datos: nuevaInfoMed
+
+            });
+
+        } catch (error){
+
+
+            console.error('Error al crear la info medica', error.message);
+
+
+            if (error.name === 'SequelizeUniqueConstraintError'){
+
+                return res.status(400).json({
+
+                    mensaje:'Hola1',
+                    error: 'Hola2'
+
+                });
+
+
+            }
+
+            if (error.name === 'SequelizeValidationError'){
+
+                return res.status(400).json({
+
+                    mensaje: 'Datos Invalidos',
+                    errores: error.errors.map(e => e.message)
+
+                });
+
+            }
+
+            res.status(500).json({
+
+                mensaje: 'Error interno del servidor',
+                error: error.message
+
+            });
+
+        }
+
+
+    },
+
+    actualizar: async (req, res) => {
+
+
+        try {
+
+
+            const {id_InfoMedica } = req.params;
+            const { diagnostico, tratamiento }= req.body;
+
+            console.log(`Actualizando info med ID ${id_InfoMedica}`);
+
+            const InfoMed = await InfoMedica.findByPK(id_InfoMedica);
+
+            if (!InfoMed){
+
+                console.log(`Infomedica con ID ${id_InfoMedica} no encontrado`);
+                return res.status(404).json({
+
+                    mensaje: `Cliente con ID ${id_InfoMedica} no encontrado`
+
+                });
+
+            }
+
+            await InfoMed.update({
+
+                diagnostico,
+                tratamiento
+
+            });
+
+
+            console.log(`Info med actualizada: ${InfoMed.id_InfoMedica}`);
+
+            res.status(200).json({
+
+                mensaje: 'Info med actualizada correctamente',
+                datos: InfoMed
+
+            });
 
 
 
+        } catch (error){
+
+
+            console.error('Error al actualizar infomed: ', error.message);
+
+            if (error.name === 'SequelizeUniqueConstraintError'){
+
+                return res.status(400).json({
+
+                    mensaje: 'Esta registrado (No tomar en cuenta en infomed)',
+                    error: 'Algo duplicado'
+
+                });
+
+
+            }
+
+            res.status(500).json({
+
+                mensaje: 'Error interno del servidor',
+                error: error.message
+
+            });
+
+        }
+
+
+    },
+
+
+
+    eliminar: async (req, res) => {
+
+
+        try {
+
+            const {id_InfoMedica} = req.params;
+            console.log(`Eliminando infomed ID: ${id_InfoMedica}`);
+
+            const InfoMed = await InfoMedica.findByPK(id_InfoMedica);
+
+            if (!InfoMed){
+
+
+                console.log(`Infomed con ID: ${id_InfoMedica} no encontrado`);
+                return res.status(404).json({
+
+                    mensaje: `Cliente con ID: $(id) no encontrado`
+
+                })
+
+            }
 
         }
 
 
     }
-
-
 
 }
