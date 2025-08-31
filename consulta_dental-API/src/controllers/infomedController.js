@@ -254,15 +254,53 @@ const infomedController = {
                 console.log(`Infomed con ID: ${id_InfoMedica} no encontrado`);
                 return res.status(404).json({
 
-                    mensaje: `Cliente con ID: $(id) no encontrado`
+                    mensaje: `Infomed con ID: ${id_InfoMedica} no encontrado`
 
-                })
+                });
 
             }
 
+            const diagnosticoPaciente = InfoMed.diagnostico;
+
+            await InfoMed.destroy();
+
+            console.log(`InfoMedica eliminada: ${id_InfoMedica}`)
+
+            res.status(200).json({
+
+                mensaje: `Infomed ${id_InfoMedica} eliminada exitosamente`
+
+            });
+
+
+
+        } catch (error){
+
+
+            console.error('Error al eliminar infomed: ', error.message);
+
+            if (error.name === 'SequelizeForeignKeyConstraintError') {
+                return res.status(400).json({
+                mensaje: 'No se puede eliminar la infomed',
+                solucion: 'Por definir'
+            });
+
+
         }
 
+        res.status(500).json({
+
+            mensaje: 'Error interno del servidor',
+            error: error.message
+
+
+        });
+
+        }
 
     }
 
-}
+};
+
+
+module.exports = infomedController;

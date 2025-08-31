@@ -1,10 +1,13 @@
 {
   "name": "consulta_dental-api",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.1",
+  "description": "APÏ TEST",
+  "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "test-connection": "node src/config/testConnection.js"
   },
   "keywords": [],
   "author": "",
