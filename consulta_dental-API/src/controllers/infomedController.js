@@ -1,4 +1,4 @@
-const {InfoMedica} = require('../models');
+const {InfoMedica} = require('../models/InfoMedica');
 
 const infomedController = {
 

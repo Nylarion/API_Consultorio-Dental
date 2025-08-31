@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 });
 
 
-app.length('/', (req, res) => {
+app.get('/', (req, res) => {
 
     res.json({
 
