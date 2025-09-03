@@ -13,9 +13,22 @@ const pacienteController = {
 
             const paciente = await Paciente.findAll({
 
+                include: [
+
+                    {
+                        model: InfoMedica,
+                        as: 'infomedicas',
+                        attributes: ['id_InfoMedica', 'diagnostico', 'tratamiento']
+                    },
+
+                    {
+                        model: Cita,
+                        as: 'citas',
+                        attributes: ['id_Cita', 'nro_Cita', 'fecha_Cita', 'ultima_Cita']
+                    }
+                ],
 
                 order: [['Nombre_p', 'ASC']]
-
 
             });
 
