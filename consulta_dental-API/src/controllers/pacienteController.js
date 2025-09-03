@@ -1,4 +1,4 @@
-const Pacientes = require('../models/Paciente');
+const {Paciente, InfoMedica, Cita} = require('../models');
 
 const pacienteController = {
 
@@ -11,7 +11,7 @@ const pacienteController = {
 
             console.log('Buscando toda la informacón de los pacientes.');
 
-            const Paciente = await Pacientes.findAll({
+            const paciente = await Paciente.findAll({
 
 
                 order: [['Nombre_p', 'ASC']]
@@ -20,14 +20,14 @@ const pacienteController = {
             });
 
 
-            console.log(`Se encontraron ${Paciente.length} pacientes.`);
+            console.log(`Se encontraron ${paciente.length} pacientes.`);
 
             res.status(200).json({
 
 
                 mensaje: 'Informacion obtenida exitosamente',
-                cantidad: Paciente.length,
-                datos: Paciente
+                cantidad: paciente.length,
+                datos: paciente
 
             });
 
@@ -58,9 +58,9 @@ const pacienteController = {
 
             console.log(`Buscando Información Medica por ID: ${id_Paciente}`);
 
-            const Paciente = await Pacientes.findByPk(id_Paciente); //cambiar
+            const paciente = await Paciente.findByPk(id_Paciente); //cambiar
             
-            if (!Paciente){
+            if (!paciente){
 
                 console.log(`Paciente con ID ${id_Paciente} no encontrado`);
                 return res.status(404).json({
@@ -75,7 +75,7 @@ const pacienteController = {
             res.status(200).json({
 
                 mensaje: 'Informacion de panciente encontrada exitosamente',
-                datos: Paciente
+                datos: paciente
 
             });
 
@@ -105,7 +105,7 @@ const pacienteController = {
             console.log('Creando nueva información del paciente: ', {Nombre_p, Apellido_Pp, Apellido_Mp});
 
 
-            const nuevoPaciente = await Pacientes.create({
+            const nuevoPaciente = await Paciente.create({
 
                 Nombre_p,
                 Apellido_Pp,
@@ -174,9 +174,9 @@ const pacienteController = {
 
             console.log(`Actualizando información del paciente con ID: ${id_Paciente}`);
 
-            const Paciente = await Pacientes.findByPk(id_Paciente); //cambiar
+            const paciente = await Paciente.findByPk(id_Paciente); //cambiar
 
-            if (!Paciente){
+            if (!paciente){
 
                 console.log(`Paciente con ID ${id_Paciente} no encontrado`);
                 return res.status(404).json({
@@ -187,7 +187,7 @@ const pacienteController = {
 
             }
 
-            await Paciente.update({
+            await paciente.update({
 
                 Nombre_p,
                 Apellido_Pp,
@@ -196,12 +196,12 @@ const pacienteController = {
             });
 
 
-            console.log(`Información del paciente actualizada: ${Paciente.id_Paciente}`);
+            console.log(`Información del paciente actualizada: ${paciente.id_Paciente}`);
 
             res.status(200).json({
 
                 mensaje: 'Información del paciente actualizada correctamente',
-                datos: Paciente
+                datos: paciente
 
             });
 

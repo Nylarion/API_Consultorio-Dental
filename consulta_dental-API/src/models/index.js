@@ -8,17 +8,17 @@ Paciente.hasMany(Infomedica, {
     as: 'infomedicas'
 })
 
-Paciente.hasMany(Cita, {
-
-    foreignKey: 'id_Paciente',
-    as: 'citas'
-})
-
 Infomedica.belongsTo(Paciente,{
 
     foreignKey: 'id_Paciente',    
     as: 'paciente'
 
+})
+
+Paciente.hasMany(Cita, {
+
+    foreignKey: 'id_Paciente',
+    as: 'citas'
 })
 
 Cita.belongsTo(Paciente, {
