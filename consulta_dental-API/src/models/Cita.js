@@ -1,11 +1,11 @@
-const {DataTypes} = require('sequilize');
+const {DataTypes} = require('sequelize');
 const sequilize = require('../config/database');
 
 const Citas = sequilize.define('Citas',{
 
     id_Cita:{
 
-        type: DataTypes.INTERGER,
+        type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
         allowNull: false
@@ -14,7 +14,7 @@ const Citas = sequilize.define('Citas',{
 
     nro_Cita:{
 
-        type: DataTypes.INTERGER,
+        type: DataTypes.INTEGER,
 
     },
 
