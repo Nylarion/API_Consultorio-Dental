@@ -1,6 +1,6 @@
-const Citas = require('../models/Cita');
+const Atenciones = require('../models/Cita');
 
-const citaController = {
+const atencionController = {
 
 
     obtenerTodos: async (req, res) => {
@@ -9,32 +9,32 @@ const citaController = {
         try {
 
 
-            console.log('Buscando toda la informacón de las citas.');
+            console.log('Buscando toda la informacón de las atenciones.');
 
-            const Cita = await Citas.findAll({
+            const Atencion = await Atenciones.findAll({
 
 
-                order: [['nro_Cita', 'ASC']]
+                order: [['id_Atencion', 'ASC']]
 
 
             });
 
 
-            console.log(`Se encontraron ${Cita.length} citas.`);
+            console.log(`Se encontraron ${Atencion.length} atenciones.`);
 
             res.status(200).json({
 
 
                 mensaje: 'Informacion obtenida exitosamente',
-                cantidad: Cita.length,
-                datos: Cita
+                cantidad: Atencion.length,
+                datos: Atencion
 
             });
 
         } catch (error){
 
 
-            console.error('Error al obtener informacion de las citas: ', error.message);
+            console.error('Error al obtener informacion de las atenciones: ', error.message);
 
             res.status(500).json({
 
@@ -54,18 +54,18 @@ const citaController = {
 
         try {
 
-            const {id_Cita} = req.params;
+            const {id_Atencion} = req.params;
 
-            console.log(`Buscando Información de las citas por ID: ${id_Cita}.`);
+            console.log(`Buscando Información de las atenciones por ID: ${id_Atencion}.`);
 
-            const Cita = await Citas.findByPk(id_Cita); //cambiar
+            const Atencion = await Atenciones.findByPk(id_Atencion); //cambiar
             
-            if (!Cita){
+            if (!Atencion){
 
-                console.log(`Cita con ID ${id_Cita} no encontrada.`);
+                console.log(`Atencion con ID ${id_Atencion} no encontrada.`);
                 return res.status(404).json({
 
-                    mensaje: `Cita con ID ${id_Cita} no encontrado.`
+                    mensaje: `Atencion con ID ${id_Atencion} no encontrada.`
 
                 });
 
@@ -73,14 +73,14 @@ const citaController = {
 
             res.status(200).json({
 
-                mensaje: 'Cita encontrada exitosamente',
-                datos: Cita
+                mensaje: 'Atencion encontrada exitosamente',
+                datos: Atencion
 
             });
 
         } catch (error){
 
-            console.error('Error al objeter información de la cita: ', error.message);
+            console.error('Error al obtener información de la atención: ', error.message);
 
             res.status(500).json({
 
