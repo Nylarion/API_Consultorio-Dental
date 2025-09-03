@@ -9,7 +9,7 @@ const infomedController = {
         try {
 
 
-            console.log('Searching All Medical Information');
+            console.log('Buscando toda la informacion medica.');
 
             const InfoMed = await InfoMedica.findAll({
 
@@ -70,8 +70,6 @@ const infomedController = {
                 });
 
             }
-
-            console.log(`Información medica encontrada: ${InfoMed.diagnostico}`)
 
 
             res.status(200).json({

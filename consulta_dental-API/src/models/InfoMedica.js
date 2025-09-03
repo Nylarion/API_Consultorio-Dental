@@ -20,7 +20,6 @@ const InfoMedica = sequelize.define('Infomedica', {
 
     tratamiento: {
 
-
         type: DataTypes.STRING(100)
 
     }
@@ -31,7 +30,6 @@ const InfoMedica = sequelize.define('Infomedica', {
  timestamps: false,
  charset: 'utf8mb4',
  collate: 'utf8mb4_0900_ai_ci'
-
 
 });
 
