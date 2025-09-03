@@ -1,4 +1,4 @@
-const {Paciente, InfoMedica, Cita} = require('../models');
+const {Paciente, Infomedica, Cita} = require('../models');
 
 const pacienteController = {
 
@@ -16,7 +16,7 @@ const pacienteController = {
                 include: [
 
                     {
-                        model: InfoMedica,
+                        model: Infomedica,
                         as: 'infomedicas',
                         attributes: ['id_InfoMedica', 'diagnostico', 'tratamiento']
                     },
