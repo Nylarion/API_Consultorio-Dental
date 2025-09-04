@@ -280,7 +280,7 @@ const infomedController = {
             if (error.name === 'SequelizeForeignKeyConstraintError') {
                 return res.status(400).json({
                 mensaje: 'No se puede eliminar la infomed',
-                solucion: 'Por definir'
+                solucion: 'Borre primero al cliente asignado a esta ID de información medica.'
             });
 
 

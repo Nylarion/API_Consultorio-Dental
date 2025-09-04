@@ -186,7 +186,7 @@ const citaController = {
 
             }
 
-            await Paciente.update({
+            await Cita.update({
 
                 nro_Cita,
                 fecha_Cita,
@@ -261,7 +261,7 @@ const citaController = {
 
             const fecha_Cita = Cita.fecha_Cita;
 
-            await Paciente.destroy();
+            await Cita.destroy();
 
             console.log(`Cita con ID: ${id_Cita} eliminada.`)
 
@@ -281,7 +281,7 @@ const citaController = {
             if (error.name === 'SequelizeForeignKeyConstraintError') {
                 return res.status(400).json({
                 mensaje: 'No se puede eliminar la cita agendada.',
-                solucion: 'Por definir'
+                solucion: 'Borre primero al cliente asignado a esta ID de cita.'
             });
 
 

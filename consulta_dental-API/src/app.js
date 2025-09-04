@@ -5,6 +5,9 @@ const sequelize = require('./config/database');
 
 
 const pacienteRoutes = require('./routes/pacienteRoutes');
+const infomedicaRoutes = require('./routes/infomedRoutes');
+const citaRoutes = require('./routes/citaRoutes');
+const { Infomedica } = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -30,8 +33,9 @@ app.get('/', (req, res) => {
         version: '0.0.1',
         endpoints: {
 
-            Paciente: '/api/pacientes' //CAMBIAR SEGUN MODELO
-
+            Paciente: '/api/pacientes',
+            Infomedica: '/api/infomedica',
+            Cita: '/api/cita'
         },
 
         documentacion: 'Consulta la guía para ver todos los endpoints disponibles'
@@ -42,7 +46,8 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/pacientes', pacienteRoutes); //CAMBIAR SEGUN MODELO
-
+app.use('/api/infomedica', infomedicaRoutes); 
+app.use('/api/cita', citaRoutes); 
 
 app.use((req, res) => {
 

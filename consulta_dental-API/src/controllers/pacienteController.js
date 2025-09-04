@@ -17,13 +17,13 @@ const pacienteController = {
 
                     {
                         model: Infomedica,
-                        as: 'infomedicas',
+                        as: 'infomedica',
                         attributes: ['id_InfoMedica', 'diagnostico', 'tratamiento']
                     },
 
                     {
                         model: Cita,
-                        as: 'citas',
+                        as: 'cita',
                         attributes: ['id_Cita', 'nro_Cita', 'fecha_Cita', 'ultima_Cita']
                     }
                 ],
@@ -71,7 +71,24 @@ const pacienteController = {
 
             console.log(`Buscando Información Medica por ID: ${id_Paciente}`);
 
-            const paciente = await Paciente.findByPk(id_Paciente); //cambiar
+            const paciente = await Paciente.findByPk(id_Paciente, {
+
+                include: [
+
+                    {
+                        model: Infomedica,
+                        as: 'infomedica',
+                        attributes: ['id_InfoMedica', 'diagnostico', 'tratamiento']
+                    },
+
+                    {
+                        model: Cita,
+                        as: 'cita',
+                        attributes: ['id_Cita', 'nro_Cita', 'fecha_Cita', 'ultima_Cita']
+                    }
+                ],
+
+            });
             
             if (!paciente){
 
@@ -113,7 +130,7 @@ const pacienteController = {
 
         try {
 
-            const {Nombre_p, Apellido_Pp, Apellido_Mp, } = req.body;
+            const {Nombre_p, Apellido_Pp, Apellido_Mp, id_InfoMedica, id_Cita} = req.body;
 
             console.log('Creando nueva información del paciente: ', {Nombre_p, Apellido_Pp, Apellido_Mp});
 
@@ -122,8 +139,9 @@ const pacienteController = {
 
                 Nombre_p,
                 Apellido_Pp,
-                Apellido_Mp
-
+                Apellido_Mp,
+                id_InfoMedica,
+                id_Cita
             });
 
             console.log(`Informacion del paciente creada con ID: ${nuevoPaciente.id_InfoMedica}`);
@@ -183,7 +201,7 @@ const pacienteController = {
 
 
             const {id_Paciente } = req.params;
-            const {Nombre_p, Apellido_Pp, Apellido_Mp }= req.body;
+            const {Nombre_p, Apellido_Pp, Apellido_Mp, id_InfoMedica, id_Cita}= req.body;
 
             console.log(`Actualizando información del paciente con ID: ${id_Paciente}`);
 
@@ -204,7 +222,9 @@ const pacienteController = {
 
                 Nombre_p,
                 Apellido_Pp,
-                Apellido_Mp
+                Apellido_Mp,
+                id_InfoMedica,
+                id_Cita
 
             });
 
@@ -259,9 +279,9 @@ const pacienteController = {
             const {id_Paciente} = req.params;
             console.log(`Eliminando información del paciente con ID: ${id_Paciente}`);
 
-            const Paciente = await Pacientes.findByPk(id_Paciente); //cambiar
+            const paciente = await Paciente.findByPk(id_Paciente); //cambiar
 
-            if (!Paciente){
+            if (!paciente){
 
 
                 console.log(`Paciente con ID: ${id_Paciente} no encontrado`);
@@ -273,9 +293,9 @@ const pacienteController = {
 
             }
 
-            const nombrePaciente = Paciente.Nombre_p;
+            const nombrePaciente = paciente.Nombre_p;
 
-            await Paciente.destroy();
+            await paciente.destroy();
 
             console.log(`Paciente con ID: ${id_Paciente} eliminado.`)
 

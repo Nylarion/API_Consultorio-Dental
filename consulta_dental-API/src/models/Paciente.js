@@ -72,7 +72,18 @@ const Paciente = sequelize.define('Paciente',{
 
             }
         }
-    }    
+    },
+    
+    id_InfoMedica: {
+        
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+  
+    id_Cita: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    }
 },
 
 {
