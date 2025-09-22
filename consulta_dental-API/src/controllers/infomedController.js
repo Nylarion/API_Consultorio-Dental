@@ -9,7 +9,7 @@ const infomedController = {
         try {
 
 
-            console.log('Buscando toda la informacion medica.');
+            console.log('Buscando toda la información médica.');
 
             const InfoMed = await InfoMedica.findAll({
 
@@ -25,7 +25,7 @@ const infomedController = {
             res.status(200).json({
 
 
-                mensaje: 'Informacion obtenida exitosamente',
+                mensaje: 'Información obtenida exitosamente',
                 cantidad: InfoMed.length,
                 datos: InfoMed
 
@@ -56,16 +56,16 @@ const infomedController = {
 
             const {id_InfoMedica} = req.params;
 
-            console.log(`Buscando Información Medica por ID: ${id_InfoMedica}`);
+            console.log(`Buscando información médica por ID: ${id_InfoMedica}`);
 
-            const InfoMed = await InfoMedica.findByPk(id_InfoMedica); //cambiar
+            const InfoMed = await InfoMedica.findByPk(id_InfoMedica);
             
             if (!InfoMed){
 
-                console.log(`Información medica con ID ${id_InfoMedica} no encontrado`);
+                console.log(`Información médica con ID ${id_InfoMedica} no encontrada.`);
                 return res.status(404).json({
 
-                    mensaje: `Información medica con ID ${id_InfoMedica} no encontrado`
+                    mensaje: `Información médica con ID ${id_InfoMedica} no encontrada.`
 
                 });
 
@@ -74,7 +74,7 @@ const infomedController = {
 
             res.status(200).json({
 
-                mensaje: 'Informacion medica encontrada exitosamente',
+                mensaje: 'Información médica encontrada exitosamente',
                 datos: InfoMed
 
             });
@@ -102,7 +102,7 @@ const infomedController = {
 
             const {diagnostico, tratamiento} = req.body;
 
-            console.log('Creando nueva información medica: ', {diagnostico, tratamiento});
+            console.log('Creando nueva información médica: ', {diagnostico, tratamiento});
 
 
             const nuevaInfoMed = await InfoMedica.create({
@@ -112,11 +112,11 @@ const infomedController = {
 
             });
 
-            console.log(`Informacion medica creada con ID: ${nuevaInfoMed.id_InfoMedica}`);
+            console.log(`Información médica creada con ID: ${nuevaInfoMed.id_InfoMedica}`);
 
             res.status(201).json({
 
-                mensaje: 'Info medica creada exitosamente',
+                mensaje: 'Información médica creada exitosamente',
                 datos: nuevaInfoMed
 
             });
@@ -131,8 +131,8 @@ const infomedController = {
 
                 return res.status(400).json({
 
-                    mensaje:'Hola1',
-                    error: 'Hola2'
+                    mensaje:'Información invalida.',
+                    error: 'Ingrese información valida.'
 
                 });
 
@@ -171,16 +171,16 @@ const infomedController = {
             const {id_InfoMedica } = req.params;
             const { diagnostico, tratamiento }= req.body;
 
-            console.log(`Actualizando info med ID ${id_InfoMedica}`);
+            console.log(`Actualizando la información médica ID ${id_InfoMedica}`);
 
-            const InfoMed = await InfoMedica.findByPk(id_InfoMedica); //cambiar
+            const InfoMed = await InfoMedica.findByPk(id_InfoMedica);
 
             if (!InfoMed){
 
-                console.log(`Infomedica con ID ${id_InfoMedica} no encontrado`);
+                console.log(`Información médica con ID ${id_InfoMedica} no encontrada.`);
                 return res.status(404).json({
 
-                    mensaje: `Cliente con ID ${id_InfoMedica} no encontrado`
+                    mensaje: `Información médica con ID ${id_InfoMedica} no encontrada.`
 
                 });
 
@@ -194,11 +194,11 @@ const infomedController = {
             });
 
 
-            console.log(`Info med actualizada: ${InfoMed.id_InfoMedica}`);
+            console.log(`Información médica actualizada: ${InfoMed.id_InfoMedica}`);
 
             res.status(200).json({
 
-                mensaje: 'Info med actualizada correctamente',
+                mensaje: 'Información médica actualizada correctamente',
                 datos: InfoMed
 
             });
@@ -208,14 +208,14 @@ const infomedController = {
         } catch (error){
 
 
-            console.error('Error al actualizar infomed: ', error.message);
+            console.error('Error al actualizar información médica: ', error.message);
 
             if (error.name === 'SequelizeUniqueConstraintError'){
 
                 return res.status(400).json({
 
-                    mensaje: 'Esta registrado (No tomar en cuenta en infomed)',
-                    error: 'Algo duplicado'
+                    mensaje: 'Esta registrado.',
+                    error: 'Datos duplicados.'
 
                 });
 
@@ -242,17 +242,17 @@ const infomedController = {
         try {
 
             const {id_InfoMedica} = req.params;
-            console.log(`Eliminando infomed ID: ${id_InfoMedica}`);
+            console.log(`Eliminando información médica ID: ${id_InfoMedica}`);
 
-            const InfoMed = await InfoMedica.findByPk(id_InfoMedica); //cambiar
+            const InfoMed = await InfoMedica.findByPk(id_InfoMedica);
 
             if (!InfoMed){
 
 
-                console.log(`Infomed con ID: ${id_InfoMedica} no encontrado`);
+                console.log(`Información médica con ID: ${id_InfoMedica} no encontrado`);
                 return res.status(404).json({
 
-                    mensaje: `Infomed con ID: ${id_InfoMedica} no encontrado`
+                    mensaje: `Información médica con ID: ${id_InfoMedica} no encontrado`
 
                 });
 
@@ -262,11 +262,11 @@ const infomedController = {
 
             await InfoMed.destroy();
 
-            console.log(`InfoMedica eliminada: ${id_InfoMedica}`)
+            console.log(`Información médica eliminada: ${id_InfoMedica}`)
 
             res.status(200).json({
 
-                mensaje: `Infomed ${id_InfoMedica} eliminada exitosamente`
+                mensaje: `Información médica ${id_InfoMedica} eliminada exitosamente`
 
             });
 
@@ -279,7 +279,7 @@ const infomedController = {
 
             if (error.name === 'SequelizeForeignKeyConstraintError') {
                 return res.status(400).json({
-                mensaje: 'No se puede eliminar la infomed',
+                mensaje: 'No se puede eliminar la información médica',
                 solucion: 'Borre primero al cliente asignado a esta ID de información medica.'
             });
 

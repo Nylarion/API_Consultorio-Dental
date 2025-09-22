@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
     res.json({
 
-        mensaje: '¡Bienvenido a API REST!',
+        mensaje: '¡Bienvenido a Consulta dental SONRISAS!',
         version: '0.0.1',
         endpoints: {
 
@@ -45,7 +45,7 @@ app.get('/', (req, res) => {
 
 });
 
-app.use('/api/pacientes', pacienteRoutes); //CAMBIAR SEGUN MODELO
+app.use('/api/pacientes', pacienteRoutes);
 app.use('/api/infomedica', infomedicaRoutes); 
 app.use('/api/cita', citaRoutes); 
 

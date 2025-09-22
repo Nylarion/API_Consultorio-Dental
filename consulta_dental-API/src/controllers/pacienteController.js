@@ -47,7 +47,7 @@ const pacienteController = {
         } catch (error){
 
 
-            console.error('Error al obtener informacion de los pacientes: ', error.message);
+            console.error('Error al obtener información de los pacientes: ', error.message);
 
             res.status(500).json({
 
@@ -69,7 +69,7 @@ const pacienteController = {
 
             const {id_Paciente} = req.params;
 
-            console.log(`Buscando Información Medica por ID: ${id_Paciente}`);
+            console.log(`Buscando información del cliente por ID: ${id_Paciente}`);
 
             const paciente = await Paciente.findByPk(id_Paciente, {
 
@@ -92,10 +92,10 @@ const pacienteController = {
             
             if (!paciente){
 
-                console.log(`Paciente con ID ${id_Paciente} no encontrado`);
+                console.log(`Paciente con ID ${id_Paciente} no encontrado.`);
                 return res.status(404).json({
 
-                    mensaje: `Paciente con ID ${id_Paciente} no encontrado`
+                    mensaje: `Paciente con ID ${id_Paciente} no encontrado.`
 
                 });
 
@@ -104,7 +104,7 @@ const pacienteController = {
 
             res.status(200).json({
 
-                mensaje: 'Informacion de panciente encontrada exitosamente',
+                mensaje: 'Información de panciente encontrada exitosamente.',
                 datos: paciente
 
             });
@@ -115,7 +115,7 @@ const pacienteController = {
 
             res.status(500).json({
 
-                mensaje: 'Error interno del servidor',
+                mensaje: 'Error interno del servidor.',
                 error: error.message
 
             });
@@ -156,15 +156,15 @@ const pacienteController = {
         } catch (error){
 
 
-            console.error('Error al crear la información del paciente', error.message);
+            console.error('Error al crear la información del paciente:', error.message);
 
 
             if (error.name === 'SequelizeUniqueConstraintError'){
 
                 return res.status(400).json({
 
-                    mensaje:'Hola1',
-                    error: 'Hola2'
+                    mensaje:'Ingrese información valida',
+                    error: 'Información invalida'
 
                 });
 
@@ -205,14 +205,14 @@ const pacienteController = {
 
             console.log(`Actualizando información del paciente con ID: ${id_Paciente}`);
 
-            const paciente = await Paciente.findByPk(id_Paciente); //cambiar
+            const paciente = await Paciente.findByPk(id_Paciente);
 
             if (!paciente){
 
-                console.log(`Paciente con ID ${id_Paciente} no encontrado`);
+                console.log(`Paciente con ID ${id_Paciente} no encontrado.`);
                 return res.status(404).json({
 
-                    mensaje: `Paciente con ID ${id_Paciente} no encontrado`
+                    mensaje: `Paciente con ID ${id_Paciente} no encontrado.`
 
                 });
 
@@ -233,7 +233,7 @@ const pacienteController = {
 
             res.status(200).json({
 
-                mensaje: 'Información del paciente actualizada correctamente',
+                mensaje: 'Información del paciente actualizada correctamente.',
                 datos: paciente
 
             });
@@ -243,14 +243,14 @@ const pacienteController = {
         } catch (error){
 
 
-            console.error('Error al actualizar la información del cliente: ', error.message);
+            console.error('Error al actualizar la información del paciente: ', error.message);
 
             if (error.name === 'SequelizeUniqueConstraintError'){
 
                 return res.status(400).json({
 
-                    mensaje: 'Esta registrado (No tomar en cuenta en infomed)',
-                    error: 'Algo duplicado'
+                    mensaje: 'Esta registrado.',
+                    error: 'Datos duplicados.'
 
                 });
 
@@ -284,10 +284,10 @@ const pacienteController = {
             if (!paciente){
 
 
-                console.log(`Paciente con ID: ${id_Paciente} no encontrado`);
+                console.log(`Paciente con ID: ${id_Paciente} no encontrado.`);
                 return res.status(404).json({
 
-                    mensaje: `Paciente con ID: ${id_Paciente} no encontrado`
+                    mensaje: `Paciente con ID: ${id_Paciente} no encontrado.`
 
                 });
 
@@ -301,7 +301,7 @@ const pacienteController = {
 
             res.status(200).json({
 
-                mensaje: `Información del paciente con ID: ${id_Paciente} eliminada exitosamente`
+                mensaje: `Información del paciente con ID: ${id_Paciente} eliminada exitosamente.`
 
             });
 

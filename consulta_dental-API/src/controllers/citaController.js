@@ -25,7 +25,7 @@ const citaController = {
             res.status(200).json({
 
 
-                mensaje: 'Informacion obtenida exitosamente',
+                mensaje: 'Informacion obtenida exitosamente.',
                 cantidad: Cita.length,
                 datos: Cita
 
@@ -58,7 +58,7 @@ const citaController = {
 
             console.log(`Buscando Información de las citas por ID: ${id_Cita}.`);
 
-            const Cita = await Citas.findByPk(id_Cita); //cambiar
+            const Cita = await Citas.findByPk(id_Cita);
             
             if (!Cita){
 
@@ -131,8 +131,8 @@ const citaController = {
 
                 return res.status(400).json({
 
-                    mensaje:'Hola1',
-                    error: 'Hola2'
+                    mensaje:'Esta registrado.',
+                    error: 'Datos duplicados.'
 
                 });
 
@@ -143,7 +143,7 @@ const citaController = {
 
                 return res.status(400).json({
 
-                    mensaje: 'Datos Invalidos',
+                    mensaje: 'Datos Invalidos.',
                     errores: error.errors.map(e => e.message)
 
                 });
@@ -173,14 +173,14 @@ const citaController = {
 
             console.log(`Actualizando información de la cita con ID: ${id_Cita}`);
 
-            const Cita = await Citas.findByPk(id_Cita); //cambiar
+            const Cita = await Citas.findByPk(id_Cita);
 
             if (!Cita){
 
-                console.log(`Cita con ID ${id_Cita} no encontrado`);
+                console.log(`Cita con ID ${id_Cita} no encontrado.`);
                 return res.status(404).json({
 
-                    mensaje: `Cita con ID ${id_Cita} no encontrado`
+                    mensaje: `Cita con ID ${id_Cita} no encontrado.`
 
                 });
 
@@ -199,7 +199,7 @@ const citaController = {
 
             res.status(200).json({
 
-                mensaje: 'Información de la cita actualizada correctamente',
+                mensaje: 'Información de la cita actualizada correctamente.',
                 datos: Cita
 
             });
@@ -215,8 +215,8 @@ const citaController = {
 
                 return res.status(400).json({
 
-                    mensaje: 'Esta registrado (No tomar en cuenta en infomed)',
-                    error: 'Algo duplicado'
+                    mensaje: 'Esta registrado.',
+                    error: 'Algo duplicado.'
 
                 });
 
@@ -245,7 +245,7 @@ const citaController = {
             const {id_Cita} = req.params;
             console.log(`Eliminando cita con ID: ${id_Cita}.`);
 
-            const Cita = await Citas.findByPk(id_Cita); //cambiar
+            const Cita = await Citas.findByPk(id_Cita);
 
             if (!Cita){
 
@@ -267,7 +267,7 @@ const citaController = {
 
             res.status(200).json({
 
-                mensaje: `Cita con ID: ${id_Cita} eliminada exitosamente`
+                mensaje: `Cita con ID: ${id_Cita} eliminada exitosamente.`
 
             });
 
